@@ -28,7 +28,7 @@ class CadetsController < ApplicationController
     @cadet = Cadet.new
     @schoolList = [['Xavier University','Xavier University'],['Delgado Community College','Delgado Community College'],['Dillard University','Dillard University'],['University of New Orleans','University of New Orleans'],['University of Holy Cross','University of Holy Cross'],['Lousiana State University Nursing School','Lousiana State University Nursing School'],['Southern University of New Orleans','Southern University of New Orleans'],['Tulane University','Tulane University']]
     @flightList = [['Alpha','Alpha'],['Bravo','Bravo']]
-    @courseList = [['POC','POC'],['GMC','GMC']]
+    @courseList = [['AS100','AS100'],['AS200','AS200'], ['AS250','AS250'], ['AS300','AS300'], ['AS400','AS400'], ['AS500','AS500']]
     @positionList = [['Cadet Wing Commander','Cadet Wing Commander'],['Mission Support Group Commander','Mission Support Group Commander'],['Operations Group Commander','Operations Group Commander'],['Squadron Commander','Squadron Commander'],['A Flight Commander','A Flight Commander'],['B Flight Commander','B Flight Commander'],['Cadet','Cadet']]
   end
 
@@ -36,7 +36,7 @@ class CadetsController < ApplicationController
   def edit
     @schoolList = [['Xavier University','Xavier University'],['Delgado Community College','Delgado Community College'],['Dillard University','Dillard University'],['University of New Orleans','University of New Orleans'],['University of Holy Cross','University of Holy Cross'],['Lousiana State University Nursing School','Lousiana State University Nursing School'],['Southern University of New Orleans','Southern University of New Orleans'],['Tulane University','Tulane University']]
     @flightList = [['Alpha','Alpha'],['Bravo','Bravo']]
-    @courseList = [['POC','POC'],['GMC','GMC']]
+    @courseList = [['AS100','AS100'],['AS200','AS200'], ['AS250','AS250'], ['AS300','AS300'], ['AS400','AS400'], ['AS500','AS500']]
     @positionList = [['Cadet Wing Commander','Cadet Wing Commander'],['Mission Support Group Commander','Mission Support Group Commander'],['Operations Group Commander','Operations Group Commander'],['Squadron Commander','Squadron Commander'],['A Flight Commander','A Flight Commander'],['B Flight Commander','B Flight Commander'],['Cadet','Cadet']]
   end
 
