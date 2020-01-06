@@ -35,6 +35,7 @@
   <p><strong>Flight Total Attendance Percentage: </strong><%= "#{@total_percent.round(2)}%" %></p>
   <p><strong>Flight PT Attendance Percentage: </strong><%= "#{@pt_percent.round(2)}%" %></p>
   <p><strong>Flight LLAB Attendance Percentage: </strong><%= "#{@llab_percent.round(2)}%" %></p>
+  <p><strong>Flight Total OTSCs: </strong><%= @num_otscs %></p>
 </div>
 
 <!--Cadet Table-->
@@ -47,6 +48,7 @@
         <% if (@cadet == Cadet.find_by(id: session[:cadet_id])) || (Cadet.find_by(id: session[:cadet_id]).position != "Cadet") %>
         <th onclick="sortTable(3,0)",scope="col"> PT Attendance <div class="up-arrow", id = "3up">&#9650</div> <div class="down-arrow", id = "3down">&#9660</div> </th>
         <th onclick="sortTable(4,0)",scope="col"> LLAB Attendance <div class="up-arrow", id = "4up">&#9650</div> <div class="down-arrow", id = "4down">&#9660</div> </th>
+        <th onclick="sortTable(5,0)",scope="col"> OTSCs <div class="up-arrow", id = "5up">&#9650</div> <div class="down-arrow", id = "5down">&#9660</div> </th>
         <% end %>
     </tr>
   </thead>
@@ -59,6 +61,7 @@
         <% if (@cadet == Cadet.find_by(id: session[:cadet_id])) || (Cadet.find_by(id: session[:cadet_id]).position != "Cadet") %>
         <td><%= "#{cadet.pt_attendance.round(2)}%" %></td>
         <td><%= "#{cadet.llab_attendance.round(2)}%" %></td>
+        <td><%= cadet.otscs.all.count %></td>
         <% end%>
       </tr>
     <% end %>

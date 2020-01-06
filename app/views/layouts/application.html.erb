@@ -140,6 +140,7 @@
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="<%= cadet_path(current_cadet) %>" style="color:black;">My Profile</a>
+            <a class="dropdown-item" href="<%= cadet_otscs_path(current_cadet) %>" style="color:black;">My OTSCs</a>
             <a class="dropdown-item" href="/tasks" style="color:black;">My Tasks</a>
             <% if (Cadet.find_by(id: session[:cadet_id]).position != "Cadet") %>
               <a class="dropdown-item" href="/alltasks" style="color:black;">All Tasks</a>
