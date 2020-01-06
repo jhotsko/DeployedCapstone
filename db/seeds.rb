@@ -74,6 +74,8 @@ end
 @cadets.each do |cadet|
     Task.create!(:date_created => Date.today, :date_due => Date.today.next_day(3), :description => "Memo due for absence", :completed => 0, :cadet_id => cadet.id)
     Task.create!(:date_created => Date.today, :date_due => Date.today.next_day(3), :description => "Memo due for tardiness", :completed => 0, :cadet_id => cadet.id)
+    Otsc.create!(:date => Date.new(2019, 10, 17), :description => "Hair", :cadet_id => cadet.id)
+    Otsc.create!(:date => Date.new(2019, 10, 31), :description => "No belt", :cadet_id => cadet.id)
 end
 
 @events.each do |event|

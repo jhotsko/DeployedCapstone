@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   
   resources :cadets do
     resources :attendances
+    resources :otscs
   end
   resources :events do
     resources :attendances

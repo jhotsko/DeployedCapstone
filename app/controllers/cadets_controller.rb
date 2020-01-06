@@ -105,10 +105,14 @@ class CadetsController < ApplicationController
     @pt_percent = 0
     @total_percent = 0
     
+    @num_otscs = 0
+    
     @cadets.each do |cadet|
       @pt_attendance += cadet.pt_attendance
       @llab_attendance += cadet.llab_attendance
       @total_attendance += (cadet.pt_attendance + cadet.llab_attendance)
+      
+      @num_otscs += cadet.otscs.all.count
     end
     @pt_percent = @pt_attendance.to_f / @cadets.count.to_f
     @llab_percent = @llab_attendance.to_f / @cadets.count.to_f

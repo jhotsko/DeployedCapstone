@@ -24,7 +24,7 @@
 
 <!--Cadet Information-->
 
-<h2 class = "display-4" style="margin-bottom:20px;">Cadet <%= @cadet.lastName %></h2>
+<h2 class = "display-4" style="margin-bottom:20px;">Cadet <%= "#{@cadet.firstName} #{@cadet.lastName}" %></h2>
 
 
 <div style="text-align: center;">
@@ -74,6 +74,11 @@
       <%= @cadet.flight %>
     </p>
     <% if (@cadet == Cadet.find_by(id: session[:cadet_id])) || (Cadet.find_by(id: session[:cadet_id]).position != "Cadet") %>  
+    <p>
+      <strong><%= link_to 'Total OTSCs:', cadet_otscs_path(@cadet) %></strong>
+      <%= "#{@cadet.otscs.all.count}" %>
+    </p>
+    
     <p>
       <% if @cadet.approved == false %>
         <p class = "text-danger" style="text-align: left;"><i class="fas fa-times"></i><%= "Unapproved" %></p>
