@@ -1,6 +1,7 @@
 class Cadet < ApplicationRecord
     has_many :attendances, dependent: :destroy
     has_many :otscs, dependent: :destroy
+    has_many :workouts, dependent: :destroy
     has_many :tasks, dependent: :destroy
     has_many :events, through: :attendances
     has_secure_password

@@ -1,0 +1,97 @@
+<html lang="en">
+<header>
+  <style>
+    
+  </style>
+</header>
+
+<p id="notice"><%= notice %></p>
+
+<div class="container" style="height: 100px; background-color: #dbe6c1; display: flex;">
+<h2 class="display-4" style="margin-top: 30px; vertical-align: middle; margin: auto;">Workouts for <%= link_to "C/#{@cadet.firstName} #{@cadet.lastName}", @cadet %></h2>
+</div>
+
+<br>
+
+<% if (@cadet == Cadet.find_by(id: session[:cadet_id])) %>
+
+<%= bootstrap_form_with(model: [ @cadet, @cadet.workouts.build ], local: true) do |form| %>
+  <div class="card border-0 shadow my-5">
+    <div class="card-body p-5">
+      <h4 class="font-weight-light" >Add a Workout</h4>
+      <font class="font-weight-light" style="text-align: left;" color="red">All Fields Required *</font>
+      <br></br>
+
+    <div class="container">
+      
+      <div class="row">
+        <label for="colFormLabel" class="col-sm-2 col-form-label"><strong>Date: </strong></label>
+        <div class="col-sm-10"><%= form.date_field :workoutdate, hide_label: true %></div>
+      </div>
+
+      <div class="row">
+        <label for="colFormLabel" class="col-sm-2 col-form-label"><strong>Workout Type: </strong></label>
+        <div class="col-sm-10"><%= form.select :workoutType, options_for_select(@workout_list), :include_blank => true, hide_label: true %></div>
+      </div>
+      
+      <div class="row">
+        <label for="colFormLabel" class="col-sm-2 col-form-label"><strong>Repititions: </strong></label>
+        <div class="col-sm-10"><%= form.number_field :repititions, :value => 0, hide_label: true %></div>
+      </div>
+      
+      <div class="row">
+        <label for="colFormLabel" class="col-sm-2 col-form-label"><strong>Distance (In Miles): </strong></label>
+        <div class="col-sm-10"><%= form.number_field :distance, :value => 0, :step => 0.01, hide_label: true %></div>
+      </div>
+  
+      <div class="actions" style="text-align:center;">
+        <%= form.submit %>
+      </div>
+  
+    </div>
+    </div>
+    </div>
+  <% end %>
+<%end%>
+
+<div class="row">
+  <div class="column"><p><strong>Total Workouts: </strong><%= @cadet.workouts.all.count %></p></div>
+</div>
+
+<div class="row">
+  <div class="column"><p><strong>Total PT Points: </strong><%= @points %></p></div>
+</div>
+
+<div class="container">
+  <div class="col md"></div>
+    
+  <div class="col md  ">
+    <% @workouts.each do |workout| %>
+      <div class="blog-post">
+        <div class="row" style="text-align:left;"><h3><%= workout.workoutType %></h3></div>
+        <div class="row" style="text-align:left;"><%= workout.workoutdate %></div>
+        <div class="row" style="text-align:left;"><%= "Repititions: #{workout.repititions}" %></div>
+        <div class="row" style="text-align:left;"><%= "Distance: #{workout.distance}" %></div>
+        <% if (Cadet.find_by(id: session[:cadet_id]).position != "Cadet") %>
+          <div class="row"><p style="text-align:left;"><%= link_to 'Delete Workout', [workout.cadet, workout], method: :delete, data: { confirm: 'Are you sure?' } %></p></div>
+        <% end %>
+        <hr>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="col md"></div>
+</div>
+
+<br>
+
+<!-- Back to Top Button -->
+<button onclick="topFunction()" type="button" class="btn btn-dark">Back to Top</button>
+<script>
+  function topFunction() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+  }
+</script>
+
+<br>
