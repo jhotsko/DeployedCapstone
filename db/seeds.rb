@@ -76,6 +76,8 @@ end
     Task.create!(:date_created => Date.today, :date_due => Date.today.next_day(3), :description => "Memo due for tardiness", :completed => 0, :cadet_id => cadet.id)
     Otsc.create!(:date => Date.new(2019, 10, 17), :description => "Hair", :cadet_id => cadet.id)
     Otsc.create!(:date => Date.new(2019, 10, 31), :description => "No belt", :cadet_id => cadet.id)
+    Workout.create!(:workoutType => 'Run', :workoutdate => Date.new(2019, 10, 16), :repititions => 0, :distance => 3, :cadet_id => cadet.id)
+    Workout.create!(:workoutType => 'Pushups', :workoutdate => Date.new(2019, 10, 30), :repititions => 50, :distance => 0, :cadet_id => cadet.id)
 end
 
 @events.each do |event|

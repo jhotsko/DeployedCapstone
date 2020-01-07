@@ -80,6 +80,11 @@
     </p>
     
     <p>
+      <strong><%= link_to 'Total Workouts:', cadet_workouts_path(@cadet) %></strong>
+      <%= "#{@cadet.workouts.all.count}" %>
+    </p>
+    
+    <p>
       <% if @cadet.approved == false %>
         <p class = "text-danger" style="text-align: left;"><i class="fas fa-times"></i><%= "Unapproved" %></p>
       <%end%>

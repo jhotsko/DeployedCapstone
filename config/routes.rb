@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :cadets do
     resources :attendances
     resources :otscs
+    resources :workouts
   end
   resources :events do
     resources :attendances
