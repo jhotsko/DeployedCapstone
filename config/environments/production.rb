@@ -81,7 +81,7 @@ Rails.application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
   
   config.action_mailer.delivery_method = :smtp
-  host = 'https://rotsee.herokuapp.com/' #replace with your own url
+  host = 'https://mysterious-wildwood-57680.herokuapp.com/' #replace with your own url
   config.action_mailer.default_url_options = { host: host }
 
   # SMTP settings for gmail
