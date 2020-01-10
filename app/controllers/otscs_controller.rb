@@ -15,23 +15,28 @@ class OtscsController < ApplicationController
       elsif num_otscs == 2
         CadetMailer.with(cadet: @cadet).otsc_two_email.deliver_later
         CadetMailer.with(cadet: @cadet, admin: @sqcc, otsc: @otsc).otsc_admin_email.deliver_later
-        Task.create!(:date_created => @otsc.date, :date_due => @otsc.date.next_day(7), :description => "Memo for second OTSC", :completed => 0, :cadet_id => @cadet.id)
+        @task = Task.create!(:date_created => @otsc.date, :date_due => @otsc.date.next_day(7), :description => "Memo for second OTSC", :completed => 0, :cadet_id => @cadet.id)
+        CadetMailer.with(cadet: @cadet, task: @task).task_created_email.deliver_later
       elsif num_otscs == 3
         CadetMailer.with(cadet: @cadet).otsc_three_email.deliver_later
         CadetMailer.with(cadet: @cadet, admin: @sqcc, otsc: @otsc).otsc_admin_email.deliver_later
         Task.create!(:date_created => @otsc.date, :date_due => @otsc.date.next_day(7), :description => "Verbal counseling for C/#{@cadet.firstName} #{@cadet.lastName} (third OTSC)", :completed => 0, :cadet_id => @sqcc.id)
+        CadetMailer.with(cadet: @sqcc, task: @task).task_created_email.deliver_later
       elsif num_otscs == 4
         CadetMailer.with(cadet: @cadet).otsc_four_email.deliver_later
         CadetMailer.with(cadet: @cadet, admin: @sqcc, otsc: @otsc).otsc_admin_email.deliver_later
         Task.create!(:date_created => @otsc.date, :date_due => @otsc.date.next_day(7), :description => "LOC for C/#{@cadet.firstName} #{@cadet.lastName} (fourth OTSC)", :completed => 0, :cadet_id => @ogcc.id)
+        CadetMailer.with(cadet: @ogcc, task: @task).task_created_email.deliver_later
       elsif num_otscs == 5
         CadetMailer.with(cadet: @cadet).otsc_five_email.deliver_later
         CadetMailer.with(cadet: @cadet, admin: @sqcc, otsc: @otsc).otsc_admin_email.deliver_later
         Task.create!(:date_created => @otsc.date, :date_due => @otsc.date.next_day(7), :description => "LOC for C/#{@cadet.firstName} #{@cadet.lastName} (fifth OTSC)", :completed => 0, :cadet_id => @cwcc.id)
+        CadetMailer.with(cadet: @cwcc, task: @task).task_created_email.deliver_later
       elsif num_otscs >= 6
         CadetMailer.with(cadet: @cadet).otsc_six_email.deliver_later
         CadetMailer.with(cadet: @cadet, admin: @sqcc, otsc: @otsc).otsc_admin_email.deliver_later
         Task.create!(:date_created => @otsc.date, :date_due => @otsc.date.next_day(7), :description => "Cadre counseling for C/#{@cadet.firstName} #{@cadet.lastName} (sixth or more OTSC)", :completed => 0, :cadet_id => @cwcc.id)
+        CadetMailer.with(cadet: @cwcc, task: @task).task_created_email.deliver_later
       end
     else
       redirect_to cadet_otscs_path(@cadet), warning: "OTSC was not created"
