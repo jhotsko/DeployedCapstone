@@ -1,0 +1,12 @@
+<%= "Cadet #{@cadet.lastName}," %>
+===============================================
+
+A new On the Spot Correction has been created for you on ROTSee:
+
+<%= @otsc.date %>
+<%= @otsc.description %>
+
+This is your second OTSC of the semester. You will need to write a memorandum explaining your understanding of the issue
+and how you will prevent the same issue in the future. The memo is due to your SQ/CC NLT <%= @otsc.date.next_day(3) %>.
+
+If you have any questions, please speak with your SQ/CC.

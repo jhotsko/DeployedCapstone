@@ -43,4 +43,47 @@ class CadetMailer < ApplicationMailer
         @task = params[:task]
         mail to: @cadet.email, :subject => 'Task Updated'
     end
+    
+    def otsc_one_email
+        @cadet = params[:cadet]
+        @otsc = params[:otsc]
+        mail to: @cadet.email, :subject => 'OTSC'
+    end
+    
+    def otsc_two_email
+        @cadet = params[:cadet]
+        @otsc = params[:otsc]
+        mail to: @cadet.email, :subject => 'OTSC'
+    end
+    
+    def otsc_three_email
+        @cadet = params[:cadet]
+        @otsc = params[:otsc]
+        mail to: @cadet.email, :subject => 'OTSC'
+    end
+    
+    def otsc_four_email
+        @cadet = params[:cadet]
+        @otsc = params[:otsc]
+        mail to: @cadet.email, :subject => 'OTSC'
+    end
+    
+    def otsc_five_email
+        @cadet = params[:cadet]
+        @otsc = params[:otsc]
+        mail to: @cadet.email, :subject => 'OTSC'
+    end
+    
+    def otsc_six_email
+        @cadet = params[:cadet]
+        @otsc = params[:otsc]
+        mail to: @cadet.email, :subject => 'OTSC'
+    end
+    
+    def otsc_admin_email
+        @cadet = params[:cadet]
+        @admin = params[:cadet]
+        @otsc = params[:otsc]
+        mail to: @admin.email, :subject => 'OTSC'
+    end
 end

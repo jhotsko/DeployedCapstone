@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>Cadet <%= @admin.lastName %>,</p>
+    <p>
+        A new On the Spot Correction has been created for C/<%= @cadet.lastName %>. They now have <%= @cadet.otscs.all.count %> OTSC(s).
+    </p>
+    <p><%= @otsc.date %>:</p>
+    <p><%= @otsc.description %></p>
+  </body>
+</html>

@@ -62,8 +62,10 @@ class EventsController < ApplicationController
         @cadet = Cadet.find_by_id(attendance.cadet_id)
         if attendance.attended == 0
           CadetMailer.with(cadet: @cadet, event: @event).absent_email.deliver_later
+          Task.create!(:date_created => @event.eventDate, :date_due => @event.eventDate.next_day(3), :description => "Memo due for absence", :completed => 0, :cadet_id => @cadet.id)
         elsif attendance.attended == 2
           CadetMailer.with(cadet: @cadet, event: @event).tardy_email.deliver_later
+          Task.create!(:date_created => @event.eventDate, :date_due => @event.eventDate.next_day(3), :description => "Memo due for tardiness", :completed => 0, :cadet_id => @cadet.id)
         else
           CadetMailer.with(cadet: @cadet, event: @event).present_email.deliver_later
         end
