@@ -59,17 +59,19 @@ class EventsController < ApplicationController
     if @event.update(event_params)
       redirect_to @event, success: "Event was successfully updated."
       @event.attendances.each do |attendance|
-        @cadet = Cadet.find_by_id(attendance.cadet_id)
-        if attendance.attended == 0
-          CadetMailer.with(cadet: @cadet, event: @event).absent_email.deliver_later
-          @task = Task.create!(:date_created => @event.eventDate, :date_due => @event.eventDate.next_day(3), :description => "Memo due for absence", :completed => 0, :cadet_id => @cadet.id)
-          CadetMailer.with(cadet: @cadet, task: @task).task_created_email.deliver_later
-        elsif attendance.attended == 2
-          CadetMailer.with(cadet: @cadet, event: @event).tardy_email.deliver_later
-          @task = Task.create!(:date_created => @event.eventDate, :date_due => @event.eventDate.next_day(3), :description => "Memo due for tardiness", :completed => 0, :cadet_id => @cadet.id)
-          CadetMailer.with(cadet: @cadet, task: @task).task_created_email.deliver_later
-        else
-          CadetMailer.with(cadet: @cadet, event: @event).present_email.deliver_later
+        if attendance.attended_changed?
+          @cadet = Cadet.find_by_id(attendance.cadet_id)
+          if attendance.attended == 0
+            CadetMailer.with(cadet: @cadet, event: @event).absent_email.deliver_later
+            @task = Task.create!(:date_created => @event.eventDate, :date_due => @event.eventDate.next_day(3), :description => "Memo due for absence", :completed => 0, :cadet_id => @cadet.id)
+            CadetMailer.with(cadet: @cadet, task: @task).task_created_email.deliver_later
+          elsif attendance.attended == 2
+            CadetMailer.with(cadet: @cadet, event: @event).tardy_email.deliver_later
+            @task = Task.create!(:date_created => @event.eventDate, :date_due => @event.eventDate.next_day(3), :description => "Memo due for tardiness", :completed => 0, :cadet_id => @cadet.id)
+            CadetMailer.with(cadet: @cadet, task: @task).task_created_email.deliver_later
+          else
+            CadetMailer.with(cadet: @cadet, event: @event).present_email.deliver_later
+          end
         end
       end
     else
