@@ -82,7 +82,7 @@ class CadetMailer < ApplicationMailer
     
     def otsc_admin_email
         @cadet = params[:cadet]
-        @admin = params[:cadet]
+        @admin = params[:admin]
         @otsc = params[:otsc]
         mail to: @admin.email, :subject => 'OTSC'
     end
