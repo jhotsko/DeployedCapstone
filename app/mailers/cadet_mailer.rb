@@ -14,22 +14,17 @@ class CadetMailer < ApplicationMailer
       mail to: cadet.email, :subject => 'Reset password instructions'
     end
     
-    def absent_email
+    def attendance_email
         @cadet = params[:cadet]
         @event = params[:event]
+        @attendance = params[:attendance]
         mail(to: @cadet.email, subject: "Attendance Update")
     end
     
-    def tardy_email
-        @cadet = params[:cadet]
+    def admin_attendance_email
         @event = params[:event]
-        mail(to: @cadet.email, subject: "Attendance Update")
-    end
-    
-    def present_email
-        @cadet = params[:cadet]
-        @event = params[:event]
-        mail(to: @cadet.email, subject: "Attendance Update")
+        @admin = params[:admin]
+        mail(to: @admin.email, subject: "Attendance Update")
     end
     
     def task_created_email
@@ -44,37 +39,7 @@ class CadetMailer < ApplicationMailer
         mail(to: @cadet.email, :subject => 'Task Updated')
     end
     
-    def otsc_one_email
-        @cadet = params[:cadet]
-        @otsc = params[:otsc]
-        mail(to: @cadet.email, :subject => 'OTSC')
-    end
-    
-    def otsc_two_email
-        @cadet = params[:cadet]
-        @otsc = params[:otsc]
-        mail(to: @cadet.email, :subject => 'OTSC')
-    end
-    
-    def otsc_three_email
-        @cadet = params[:cadet]
-        @otsc = params[:otsc]
-        mail(to: @cadet.email, :subject => 'OTSC')
-    end
-    
-    def otsc_four_email
-        @cadet = params[:cadet]
-        @otsc = params[:otsc]
-        mail(to: @cadet.email, :subject => 'OTSC')
-    end
-    
-    def otsc_five_email
-        @cadet = params[:cadet]
-        @otsc = params[:otsc]
-        mail(to: @cadet.email, :subject => 'OTSC')
-    end
-    
-    def otsc_six_email
+    def otsc_email
         @cadet = params[:cadet]
         @otsc = params[:otsc]
         mail(to: @cadet.email, :subject => 'OTSC')

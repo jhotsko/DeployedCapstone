@@ -30,7 +30,7 @@ class EventsController < ApplicationController
   def edit
     @cadets = Cadet.all.order(:lastName)
     @attendances = Attendance.all.order(:event)
-    @attendance_options = {'Absent' => 0, 'Present' => 1, 'Tardy' => 2}
+    @attendance_options = {'Present' => 1, 'Absent' => 0, 'Tardy' => 2, 'Excused Absence' => 3, 'Excused Tardy' => 4}
   end
 
   # POST /events
@@ -55,23 +55,21 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
+    
+    @attendance_options = {'Present' => 1, 'Absent' => 0, 'Tardy' => 2, 'Excused Absence' => 3, 'Excused Tardy' => 4}
+    @sqcc = Cadet.find_by position: 'Squadron Commander'
+    @ogcc = Cadet.find_by position: 'Operations Group Commander'
+    @cwcc = Cadet.find_by position: 'Cadet Wing Commander'
 
     if @event.update(event_params)
       redirect_to @event, success: "Event was successfully updated."
       @event.attendances.each do |attendance|
-        @cadet = Cadet.find_by_id(attendance.cadet_id)
-        if attendance.attended == 0
-          CadetMailer.with(cadet: @cadet, event: @event).absent_email.deliver_later
-          @task = Task.create!(:date_created => @event.eventDate, :date_due => @event.eventDate.next_day(3), :description => "Memo due for absence", :completed => 0, :cadet_id => @cadet.id)
-          CadetMailer.with(cadet: @cadet, task: @task).task_created_email.deliver_later
-        elsif attendance.attended == 2
-          CadetMailer.with(cadet: @cadet, event: @event).tardy_email.deliver_later
-          @task = Task.create!(:date_created => @event.eventDate, :date_due => @event.eventDate.next_day(3), :description => "Memo due for tardiness", :completed => 0, :cadet_id => @cadet.id)
-          CadetMailer.with(cadet: @cadet, task: @task).task_created_email.deliver_later
-        else
-          CadetMailer.with(cadet: @cadet, event: @event).present_email.deliver_later
+        if attendance.attended == 0 || attendance.attended == 2
+          @cadet = Cadet.find_by_id(attendance.cadet_id)
+          CadetMailer.with(cadet: @cadet, event: @event, attendance: @attendance_options.key(attendance.attended)).attendance_email.deliver_later
         end
       end
+      CadetMailer.with(event: @event, admin: @sqcc).admin_attendance_email.deliver_later
     else
       redirect_to edit_event_path(@event), danger: "Event was not updated."
     end

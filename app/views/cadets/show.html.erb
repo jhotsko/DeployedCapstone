@@ -122,9 +122,13 @@
           <% if attendance.attended === 0 %>
             <td class = "text-danger"><i class="fas fa-user-times"></i><%= "Absent" %></td>
           <% elsif attendance.attended === 1 %>
-             <td  class ="text-success"><i class="fas fa-user-check"></i><%= "Present" %></td>
+            <td  class ="text-success"><i class="fas fa-user-check"></i><%= "Present" %></td>
           <% elsif attendance.attended === 2 %>
-             <td  class ="text-warning"><i class="fas fa-user-times"></i><%= "Tardy" %></td>
+            <td  class ="text-warning"><i class="fas fa-user-times"></i><%= "Tardy" %></td>
+          <% elsif attendance.attended === 3 %>
+            <td  class ="text-info"><i class="fas fa-user-check"></i><%= "Excused Absence" %></td>
+          <% elsif attendance.attended === 4 %>
+            <td  class ="text-info"><i class="fas fa-user-check"></i><%= "Excused Tardy" %></td>
           <% else %>
              <td><%= attendance.attended %></td>
           <% end %>            

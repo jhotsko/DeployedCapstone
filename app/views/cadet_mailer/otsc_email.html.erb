@@ -10,9 +10,7 @@
     </p>
     <p><%= @otsc.date %>:</p>
     <p><%= @otsc.description %></p>
-    <br>
-    <p>This is your fifth OTSC of the semester. Your CW/CC will be reaching out to you for a Letter of Counseling (LOC).</p>
-    <br>
-    <p>If you have any questions, please speak with your SQ/CC.</p>
+    <%= num_otscs = @cadet.otscs.all.count %>
+    <p>You now have <%= num_otscs %> OTSCs. If you have any questions, please speak with your Squadron Commander.</p>
   </body>
 </html>
