@@ -62,7 +62,7 @@ class Cadet < ApplicationRecord
         @attendances.each do |attendance|
             if attendance.event.primaryType == "PT"
                 @total_PT += 1
-                if attendance.attended == 1
+                if attendance.attended == 1 || attendance.attended == 3 || attendance.attended == 4
                     @pres_PT += 1
                 elsif attendance.attended == 2
                     @pres_PT += 0.5
@@ -86,7 +86,7 @@ class Cadet < ApplicationRecord
             if attendance.event.primaryType == "LLAB"
                 @total_llab += 1
                 
-                if attendance.attended == 1
+                if attendance.attended == 1 || attendance.attended == 3 || attendance.attended == 4
                     @pres_llab += 1
                 elsif attendance.attended == 2
                     @pres_llab += 0.5

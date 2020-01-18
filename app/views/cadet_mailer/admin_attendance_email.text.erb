@@ -1,0 +1,13 @@
+<%= "Cadet #{@cadet.lastName}," %>
+===============================================
+
+Attendance for <%= @event.primaryType %> on <%= @event.eventDate %> has been updated.
+As a result, the following cadets' attendance records have been changed:
+
+<% @event.attendances.each do |attendance| %>
+  <% if attendance.attended == 0 || attendance.attended == 2 %>
+    C/<%= attendance.cadet.firstName %> <%= attendance.cadet.lastName %>:
+    PT Attendance: <%= attendance.cadet.pt_attendance.round(2) %>%
+    LLAB Attendance: <%= attendance.cadet.llab_attendance.round(2) %>%
+  <% end %>
+<% end %>
