@@ -1,0 +1,54 @@
+<html lang="en">
+<header>
+  <style>
+    
+    .col-form-label{
+      text-align: right;
+    }
+    
+  </style>
+</header>
+
+<%= bootstrap_form_with(model: warriorknowledge, local: true) do |form| %>
+  <% if warriorknowledge.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(warriorknowledge.errors.count, "error") %> prohibited this warriorknowledge from being saved:</h2>
+
+      <ul>
+        <% warriorknowledge.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <font color="red">All Fields Required *</font>
+  
+  <div class="container">
+
+  <br>
+  <% @ord_warriorknowledge  = @warriorknowledge %>
+
+  <div class="row">
+    <label for="colFormLabel" class="col-sm-2 col-form-label"><strong>Name of Quiz: </strong></label>
+    <div class="col-sm-10"><%= form.text_field :name, required: true, hide_label: true, value: @ord_warriorknowledge.name %></div>
+  </div>
+
+  <div class="row">
+    <label for="colFormLabel" class="col-sm-2 col-form-label"><strong>Date Assigned: </strong></label>
+    <div class="col-sm-10"><%= form.date_field :date_assigned, required: true, hide_label: true, value: @ord_warriorknowledge.date_assigned %></div>
+  </div>
+  
+  <div class="row">
+    <label for="colFormLabel" class="col-sm-2 col-form-label"><strong>Number of Questions: </strong></label>
+    <div class="col-sm-10"><%= form.number_field :num_questions, required: true, hide_label: true, value: @ord_warriorknowledge.num_questions %></div>
+  </div>
+  
+  <div class="actions" style="text-align:center;">
+    <button onclick="alert('Submit')" type="submit" class="btn btn-success"><i class="fas fa-calendar-check"></i> Submit</button>
+  </div>
+</div>
+<% end %>
+
+</html>
+

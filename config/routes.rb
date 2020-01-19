@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :warriorknowledges
   resources :tasks
   resources :articles
   get 'login', to: 'sessions#new'

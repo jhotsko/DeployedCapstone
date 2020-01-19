@@ -1,0 +1,2 @@
+class Warriorknowledge < ApplicationRecord
+end

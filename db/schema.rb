@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_07_172128) do
+ActiveRecord::Schema.define(version: 2020_01_19_051809) do
 
   create_table "articles", force: :cascade do |t|
     t.date "date"
@@ -78,6 +78,14 @@ ActiveRecord::Schema.define(version: 2020_01_07_172128) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "completed"
     t.index ["cadet_id"], name: "index_tasks_on_cadet_id"
+  end
+
+  create_table "warriorknowledges", force: :cascade do |t|
+    t.integer "num_questions"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.date "date_assigned"
+    t.string "name"
   end
 
   create_table "workouts", force: :cascade do |t|

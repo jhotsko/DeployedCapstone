@@ -1,0 +1,24 @@
+<html lang="en">
+
+<head>
+  <style>
+    span{
+      font-size: 24px;
+    }
+  </style>
+</head>
+<h2 class="display-4">Editing Warrior Knowledge Quiz </h2>
+<div>
+  <%= link_to '<i class="fas fa-calendar-day"></i> View Quiz Info'.html_safe, @warriorknowledge, :class => "btn btn-secondary btn-sm", :role => 'button', :tabindex => '0'%>
+  <p>
+    
+  </p>
+</div>
+
+<%= render 'form', warriorknowledge: @warriorknowledge %>
+
+  <p>
+    <br>
+  </p>
+
+</html>
