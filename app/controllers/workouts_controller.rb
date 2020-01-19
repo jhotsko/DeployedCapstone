@@ -21,11 +21,6 @@ class WorkoutsController < ApplicationController
     @workouts = @cadet.workouts.order(:workoutdate)
     
     @workout_list = ['Pushups', 'Pullups', 'Sit-ups', 'Run', 'Swim', 'Weights']
-    
-    @points = 0
-    @cadet.workouts.each do |workout|
-      @points += (workout.repititions.to_i * 1) + (workout.distance.to_i * 50)
-    end
   end
  
   private

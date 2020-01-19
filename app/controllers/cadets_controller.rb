@@ -107,16 +107,28 @@ class CadetsController < ApplicationController
     
     @num_otscs = 0
     
+    @pt_points = 0
+    
+    @weekly_points = {}
+    @last_week_beginning = Date.today.last_week.beginning_of_week
+    @last_week_end = Date.today.last_week.end_of_week
+    
     @cadets.each do |cadet|
       @pt_attendance += cadet.pt_attendance
       @llab_attendance += cadet.llab_attendance
       @total_attendance += (cadet.pt_attendance + cadet.llab_attendance)
       
       @num_otscs += cadet.otscs.all.count
+      
+      @pt_points += cadet.pt_points
+      
+      @weekly_points[cadet.weekly_pt_points] = cadet
     end
     @pt_percent = @pt_attendance.to_f / @cadets.count.to_f
     @llab_percent = @llab_attendance.to_f / @cadets.count.to_f
     @total_percent = @total_attendance.to_f / (@cadets.count.to_f * 2)
+    
+    @pt_cadet = @weekly_points[@weekly_points.keys().max]
   end
 
   private

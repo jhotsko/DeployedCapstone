@@ -99,6 +99,33 @@ class Cadet < ApplicationRecord
         @llab_percent
     end
     
+    def pt_points
+        @workouts = self.workouts
+        @points = 0
+        
+        @workouts.each do |workout|
+            @points += (workout.repititions.to_i * 1) + (workout.distance.to_i * 50)
+        end
+        
+        @points
+    end
+    
+    def weekly_pt_points
+        @workouts = self.workouts
+        @points = 0
+    
+        @last_week_beginning = Date.today.last_week.beginning_of_week
+        @last_week_end = Date.today.last_week.end_of_week
+        
+        @workouts.each do |workout|
+            if workout.workoutdate.between?(@last_week_beginning, @last_week_end)
+                @points += (workout.repititions.to_i * 1) + (workout.distance.to_i * 50)
+            end
+        end
+        
+        @points
+    end
+    
     def send_password_reset
       generate_token(:password_reset_token)
       self.password_reset_sent_at = Time.zone.now

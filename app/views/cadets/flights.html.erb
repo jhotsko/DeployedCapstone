@@ -36,6 +36,8 @@
   <p><strong>Flight PT Attendance Percentage: </strong><%= "#{@pt_percent.round(2)}%" %></p>
   <p><strong>Flight LLAB Attendance Percentage: </strong><%= "#{@llab_percent.round(2)}%" %></p>
   <p><strong>Flight Total OTSCs: </strong><%= @num_otscs %></p>
+  <p><strong>Flight Total PT Points: </strong><%= @pt_points %></p>
+  <p><strong>PT Cadet of the Week </strong>(<%= @last_week_beginning %> to  <%= @last_week_end %>)<strong>:</strong> C/<%= @pt_cadet.firstName %> <%= @pt_cadet.lastName %> (<%= @pt_cadet.weekly_pt_points %>) </p>
 </div>
 
 <!--Cadet Table-->
