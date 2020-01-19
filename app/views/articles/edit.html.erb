@@ -1,8 +1,15 @@
-<html lang="end">
-  
-<h1 style="margin-top:20px;">Editing Post</h1>
+<html lang="en">
+
+<head>
+  <style>
+    span{
+      font-size: 24px;
+    }
+  </style>
+</head>
+<h2 class="display-4">Editing Post </h2>
 <div>
-  <%= link_to 'Show Post', @article, :class => "btn btn-secondary  btn-sm", :style => "float-right", :role => 'button', :tabindex => '0' %>
+  <%= link_to '<i class="fas fa-calendar-day"></i> View Post'.html_safe, @article, :class => "btn btn-secondary btn-sm", :role => 'button', :tabindex => '0'%>
 </div>
 <br>
 <%= render 'form', article: @article %>

@@ -1,0 +1,44 @@
+<html lang="en">
+<header>
+  <style>
+    
+  </style>
+</header>
+
+<p id="notice"><%= notice %></p>
+
+<div class="container" style="height: 100px; background-color: #dbe6c1; display: flex;">
+<h2 class="display-4" style="margin-top: 30px; vertical-align: middle; margin: auto;">Warrior Knowledge Quizzes</h2>
+</div>
+
+<% if (Cadet.find_by(id: session[:cadet_id]).position != "Cadet") %> 
+    <%= link_to '<i class="far fa-calendar-plus"></i> New Quiz'.html_safe, new_warriorknowledge_path, 
+      :class => "btn btn-secondary btn-success btn-sm", :style => "margin-top:20px;"%>
+  <%end%>
+
+
+<br>
+
+<%= will_paginate @warriorknowledges%>
+<br>
+
+<div class="container">
+  <div class="col md"></div>
+    
+  <div class="col md">
+    <% @warriorknowledges.each do |warriorknowledge| %>
+      <div class="blog-post">
+    
+  
+        <div class="row" style="text-align:left;"><h3><%= link_to "#{warriorknowledge.name}", warriorknowledge %></h3></div>
+        <div class="row" style="text-align:left;"><%= warriorknowledge.date_assigned %></div>
+        <hr>
+      </div>
+    <% end %>
+  </div>
+  <div class="col md"></div>
+</div>
+
+<%= will_paginate @warriorknowledges%>
+<br>
+
