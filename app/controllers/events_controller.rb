@@ -19,7 +19,7 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @cadets = Cadet.all.order(:lastName)
-    @cadets_array = @cadets.map { |cadet| [cadet.lastName, cadet.id] }
+    @cadets_array = @cadets.map { |cadet| ["#{cadet.firstName} #{cadet.lastName}", cadet.id] }
     @attendance_options = {'Present' => 1, 'Absent' => 0, 'Tardy' => 2, 'Excused Absence' => 3, 'Excused Tardy' => 4}
   end
 
@@ -60,8 +60,6 @@ class EventsController < ApplicationController
     
     @attendance_options = {'Present' => 1, 'Absent' => 0, 'Tardy' => 2, 'Excused Absence' => 3, 'Excused Tardy' => 4}
     @sqcc = Cadet.find_by position: 'Squadron Commander'
-    @ogcc = Cadet.find_by position: 'Operations Group Commander'
-    @cwcc = Cadet.find_by position: 'Cadet Wing Commander'
 
     if @event.update(event_params)
       redirect_to @event, success: "Event was successfully updated."
