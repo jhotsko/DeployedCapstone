@@ -4,7 +4,7 @@ class WarriorknowledgesController < ApplicationController
   # GET /warriorknowledges
   # GET /warriorknowledges.json
   def index
-    @warriorknowledges = Warriorknowledge.all.order(date: :desc).page(params[:page]).per_page(15)
+    @warriorknowledges = Warriorknowledge.all.order(date_assigned: :desc).page(params[:page]).per_page(15)
   end
 
   # GET /warriorknowledges/1
