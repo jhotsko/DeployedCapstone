@@ -4,10 +4,11 @@ class Cadet < ApplicationRecord
     has_many :workouts, dependent: :destroy
     has_many :tasks, dependent: :destroy
     has_many :events, through: :attendances
+    has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100#" }, :default_url => 'profile_pic.png'
     has_secure_password
     validates :password, confirmation: { case_sensitive: true }
     validates :username, :uniqueness => { :case_sensitive => false }
-    
+    validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
     validates :school, :position, :course, :gradYear, :flight, :presence => true
     
     validates :lastName,

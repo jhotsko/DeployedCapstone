@@ -84,6 +84,9 @@ GEM
       xpath (~> 3.2)
     childprocess (2.0.0)
       rake (< 13.0)
+    climate_control (0.2.0)
+    cocaine (0.5.8)
+      climate_control (>= 0.0.3, < 1.0)
     concurrent-ruby (1.1.5)
     crass (1.0.4)
     cucumber (3.1.2)
@@ -156,6 +159,11 @@ GEM
     nio4r (2.5.2)
     nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
+    paperclip (4.2.4)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      cocaine (~> 0.5.5)
+      mime-types
     pg (0.20.0)
     pg_search (2.3.0)
       activerecord (>= 4.2)
@@ -290,6 +298,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   listen (= 3.1.5)
+  paperclip (~> 4.2)
   pg (= 0.20.0)
   pg_search
   puma (= 3.12.2)

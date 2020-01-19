@@ -25,10 +25,20 @@
 <!--Cadet Information-->
 
 <h2 class = "display-4" style="margin-bottom:20px;">Cadet <%= "#{@cadet.firstName} #{@cadet.lastName}" %></h2>
+  
+  <div class="container">
+    <div class="row">
 
+      <div class="col-sm-4">
+        <div  style="text-align: left;">
+          <%= image_tag @cadet.image.url(:medium) %>
+        </div>
+      </div>
+      
+      <div class="col-sm-8">
+        <div style="text-align: center;">
+          <div  style="display: inline-block; text-align: left;">
 
-<div style="text-align: center;">
-  <div  style="display: inline-block; text-align: left;">
     <p>
       <strong>Last Name:</strong>
       <%= @cadet.lastName %>
@@ -91,7 +101,10 @@
     </p>
     <% end %>
     
+    </div>
   </div>
+</div>
+</div>
 </div>
 
 <% if (@cadet == Cadet.find_by(id: session[:cadet_id])) || (Cadet.find_by(id: session[:cadet_id]).position != "Cadet") %>

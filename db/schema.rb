@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_19_051809) do
+ActiveRecord::Schema.define(version: 2020_01_19_180025) do
 
   create_table "articles", force: :cascade do |t|
     t.date "date"
@@ -48,6 +48,10 @@ ActiveRecord::Schema.define(version: 2020_01_19_051809) do
     t.boolean "approved", default: false, null: false
     t.string "password_reset_token"
     t.datetime "password_reset_sent_at"
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
     t.index ["approved"], name: "index_cadets_on_approved"
   end
 
