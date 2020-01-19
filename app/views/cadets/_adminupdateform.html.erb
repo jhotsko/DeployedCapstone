@@ -13,7 +13,7 @@
   </style>
 </header>
 
-<%= bootstrap_form_with(model: cadet, local: true) do |form| %>
+<%= bootstrap_form_with(model: cadet, local: true, multipart: true) do |form| %>
   <% if cadet.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(cadet.errors.count, "error") %> prohibited this cadet from being saved:</h2>
@@ -123,6 +123,13 @@
         <label for="password_confirmation" class="col-sm-4 col-form-label"><strong>Confirm Password: </strong><br></label>
         <div class="col-sm">
           <%= form.password_field :password_confirmation, hide_label: true%>
+        </div>
+      </div>
+      
+      <div class="form-group row">
+        <label for="image" class="col-sm-3 col-form-label"><strong>Profile Picture: </strong><br></label>
+        <div class="col-sm">
+          <%= form.file_field :image, hide_label: true%>
         </div>
       </div>
       

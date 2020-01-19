@@ -65,6 +65,9 @@ class CadetsController < ApplicationController
         if params[:password].blank?
           params.delete(:password)
         end
+        if params[:image].blank?
+          params.delete(:image)
+        end
         redirect_to @cadet, success: "Cadet was successfully updated!"
       else
         redirect_to @cadet, warning: "Cadet was not updated!"
@@ -139,14 +142,14 @@ class CadetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cadet_params
-      params.require(:cadet).permit(:lastName, :firstName, :email, :phoneNumber, :school, :position, :course, :gradYear, :flight, :username, :password, :password_confirmation)
+      params.require(:cadet).permit(:lastName, :firstName, :email, :phoneNumber, :school, :position, :course, :gradYear, :flight, :username, :password, :password_confirmation, :image)
     end
     
     def cadet_update_params
-      params.require(:cadet).permit(:lastName, :firstName, :email, :phoneNumber, :school, :position, :course, :gradYear, :flight, :username)
+      params.require(:cadet).permit(:lastName, :firstName, :email, :phoneNumber, :school, :position, :course, :gradYear, :flight, :username, :image)
     end
     
     def admin_update_params
-      params.require(:cadet).permit(:lastName, :firstName, :email, :phoneNumber, :school, :position, :course, :gradYear, :flight, :username, :password, :approved)
+      params.require(:cadet).permit(:lastName, :firstName, :email, :phoneNumber, :school, :position, :course, :gradYear, :flight, :username, :password, :approved, :image)
     end
 end
