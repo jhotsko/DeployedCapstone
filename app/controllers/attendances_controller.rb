@@ -1,8 +1,15 @@
 class AttendancesController < ApplicationController
   before_action :set_attendance, only: [:edit, :update, :destroy, :send_email]
-
+    
     def create
-      @attendance = Attendace.new(attendance_params)
+      @event = Event.find(params[:event_id])
+      @attendance = @event.attendances.create(attendance_params)
+      
+      if @attendance.save
+        redirect_to @event, success: "New attendance record has been successfully created."
+      else
+        redirect_to @event, danger: "Attendance not created."
+      end
     end
     
     def destroy
