@@ -31,7 +31,6 @@ class EventsController < ApplicationController
   # GET /events/1/edit
   def edit
     @cadets = Cadet.all.order(:lastName)
-    @attendances = Attendance.all.order(:event)
     @attendance_options = {'Present' => 1, 'Absent' => 0, 'Tardy' => 2, 'Excused Absence' => 3, 'Excused Tardy' => 4}
   end
 
