@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_19_180025) do
+ActiveRecord::Schema.define(version: 2020_01_20_004320) do
 
   create_table "articles", force: :cascade do |t|
     t.date "date"
@@ -64,6 +64,16 @@ ActiveRecord::Schema.define(version: 2020_01_19_180025) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "grades", force: :cascade do |t|
+    t.integer "num_correct"
+    t.integer "cadet_id", null: false
+    t.integer "warriorknowledge_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cadet_id"], name: "index_grades_on_cadet_id"
+    t.index ["warriorknowledge_id"], name: "index_grades_on_warriorknowledge_id"
+  end
+
   create_table "otscs", force: :cascade do |t|
     t.date "date"
     t.string "description"
@@ -90,6 +100,7 @@ ActiveRecord::Schema.define(version: 2020_01_19_180025) do
     t.datetime "updated_at", precision: 6, null: false
     t.date "date_assigned"
     t.string "name"
+    t.string "tag"
   end
 
   create_table "workouts", force: :cascade do |t|
@@ -105,6 +116,8 @@ ActiveRecord::Schema.define(version: 2020_01_19_180025) do
 
   add_foreign_key "attendances", "cadets"
   add_foreign_key "attendances", "events"
+  add_foreign_key "grades", "cadets"
+  add_foreign_key "grades", "warriorknowledges"
   add_foreign_key "otscs", "cadets"
   add_foreign_key "tasks", "cadets"
   add_foreign_key "workouts", "cadets"
