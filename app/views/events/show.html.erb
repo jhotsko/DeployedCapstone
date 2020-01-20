@@ -55,7 +55,7 @@
     <tbody>
       <% @event.attendances.each do |attendance| %>
         <tr>
-          <td><%= link_to "#{attendance.cadet.firstName} #{attendance.cadet.lastName}", attendance.cadet %></td>
+          <td><%= link_to "#{attendance.cadet.lastName}, #{attendance.cadet.firstName}", attendance.cadet %></td>
           <% if attendance.attended === 0%>
             <td class = "text-danger"><i class="fas fa-user-times"></i><%= "Absent" %></td>
           <% elsif attendance.attended === 1 %>

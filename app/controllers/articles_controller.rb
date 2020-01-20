@@ -30,6 +30,7 @@ class ArticlesController < ApplicationController
     @cadets = Cadet.all
     
     if @article.save
+
       @cadets.each do |cadet|
         ArticleMailer.with(article: @article, cadet: cadet).new_article_email.deliver_later
       end

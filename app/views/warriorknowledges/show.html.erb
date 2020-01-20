@@ -13,12 +13,32 @@
   <div class="card-body p-5">
     <h1 class="font-weight-light" style="text-align: left;"><%= @warriorknowledge.name.titleize %></h1> 
     <p style="text-align: left;"><strong><%= @warriorknowledge.date_assigned %></p>
+    <p style="text-align: left;">For: <%= @warriorknowledge.tag %></p>
     <p style="text-align: left;"><%= @warriorknowledge.num_questions %> questions</p>
+    <p style="text-align: left;">My Grade: <%= @my_grade %>%</p>
   </div>
 </div>
 
 
 <% if (Cadet.find_by(id: session[:cadet_id]).position != "Cadet") %>  
+  <!--Event Attendance Table-->
+  <h2 class="font-weight-light" style = "text-align: left; margin-top: 20px;">Grades</h2>
+  <table class = "table table-striped table-bordered", id = "table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col"> Name </th>
+        <th scope="col"> Grade </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @warriorknowledge.grades.each do |grade| %>
+        <tr>
+          <td><%= link_to "#{grade.cadet.lastName}, #{grade.cadet.firstName}", grade.cadet %></td>
+          <td><%= grade.score %>%</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
     <div>
       <%= link_to '<i class="far fa-edit"></i> Edit'.html_safe, edit_warriorknowledge_path(@warriorknowledge), :class => "btn btn-secondary btn-info btn-sm", :role => 'button', :tabindex => '0'%>
   

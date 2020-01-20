@@ -10,15 +10,23 @@ class WarriorknowledgesController < ApplicationController
   # GET /warriorknowledges/1
   # GET /warriorknowledges/1.json
   def show
+    @cadet = Cadet.find_by(id: session[:cadet_id])
+    if @cadet.course == @warriorknowledge.tag
+      @my_grade = @warriorknowledge.grades.find_by(cadet_id: session[:cadet_id]).score
+    else
+      @my_grade = "N/A"
+    end
   end
 
   # GET /warriorknowledges/new
   def new
     @warriorknowledge = Warriorknowledge.new
+    @tagList = [['All','All'],['POC','POC'],['GMC','GMC']]
   end
 
   # GET /warriorknowledges/1/edit
   def edit
+    @tagList = [['All','All'],['POC','POC'],['GMC','GMC']]
   end
 
   # POST /warriorknowledges
@@ -27,6 +35,17 @@ class WarriorknowledgesController < ApplicationController
     @warriorknowledge = Warriorknowledge.new(warriorknowledge_params)
     
     if @warriorknowledge.save
+      if @warriorknowledge.tag == "All"
+        @cadets = Cadet.all
+      elsif @warriorknowledge.tag == "POC"
+        @cadets = Cadet.where(course: ["AS300", "AS400", "AS500"])
+      else
+        @cadets = Cadet.where(course: ["AS100", "AS200", "AS250"])
+      end
+      
+      @cadets.each do |cadet|
+        Grade.create!(:num_correct => @warriorknowledge.num_questions, :cadet_id => cadet.id, :warriorknowledge_id => @warriorknowledge.id)
+      end
       redirect_to @warriorknowledge, success: "Warrior knowledge quiz successfully created."
     else
       redirect_to '/warriorknowledges/new', danger: "Warrior knowledge quiz was not created."
@@ -46,6 +65,8 @@ class WarriorknowledgesController < ApplicationController
   # DELETE /warriorknowledges/1
   # DELETE /warriorknowledges/1.json
   def destroy
+    @warriorknowledge.grades.destroy_all
+    
     @warriorknowledge.destroy
     redirect_to warriorknowledges_url, info: "Warrior knowledge quiz was successfully deleted."
   end
@@ -58,6 +79,6 @@ class WarriorknowledgesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def warriorknowledge_params
-      params.require(:warriorknowledge).permit(:num_questions, :num_correct, :date_assigned, :name, :cadet_id)
+      params.require(:warriorknowledge).permit(:num_questions, :date_assigned, :name, :tag, grades_attributes: [:id, :num_correct, :cadet_id, :warriorknowledge_id, :created_at, :updated_at])
     end
 end

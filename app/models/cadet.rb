@@ -3,7 +3,9 @@ class Cadet < ApplicationRecord
     has_many :otscs, dependent: :destroy
     has_many :workouts, dependent: :destroy
     has_many :tasks, dependent: :destroy
+    has_many :grades, dependent: :destroy
     has_many :events, through: :attendances
+    has_many :warriorknowledges, through: :grades
     has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100#" }, :default_url => 'profile_pic.png'
     has_secure_password
     validates :password, confirmation: { case_sensitive: true }

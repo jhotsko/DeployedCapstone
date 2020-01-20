@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :grades
   resources :warriorknowledges
   resources :tasks
   resources :articles
