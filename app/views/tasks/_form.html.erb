@@ -33,12 +33,12 @@
   </div>
 
   <div class="row">
-    <label for="colFormLabel" class="col-sm-2 col-form-label"><strong>Date Created: </strong></label>
+    <label for="colFormLabel" class="col-sm-2 col-form-label"><strong>Due Date: </strong></label>
     <div class="col-sm-10"><%= form.date_field :date_due, hide_label: true, value: @ord_task.date_due %></div>
   </div>
   
   <div class="row">
-    <label for="colFormLabel" class="col-sm-2 col-form-label"><strong>Due Date: </strong></label>
+    <label for="colFormLabel" class="col-sm-2 col-form-label"><strong>Description: </strong></label>
     <div class="col-sm-10"><%= form.text_field :description, required: true, hide_label: true, placeholder: "Task Description..." %></div>
   </div>
     
