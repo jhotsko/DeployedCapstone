@@ -4,7 +4,7 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <p><%= "C/#{@cadet.firstName} #{@cadet.lastName}" %>!</p>
+    <p><%= "C/#{@cadet.firstName} #{@cadet.lastName}" %>,</p>
     <p>Your ROTSee account has been updated by a POC cadet:</p>
     <br>
     <p>Username: <%= @cadet.username %></p>
@@ -15,7 +15,7 @@
     <p>Graduation Year: <%= @cadet.gradYear %></p>
     <p>Flight: <%= @cadet.flight %></p>
     <p>Approved: <%= @cadet.approved %></p>
-
+    <br>
     <p>
       Visit https://rotsee2.herokuapp.com/ for more details.
     </p>
