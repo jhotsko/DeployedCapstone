@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  resources :grades
   resources :warriorknowledges
   resources :tasks
   resources :articles
+  resources :grades
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   get 'logout'  => 'sessions#destroy'
@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :attendances
     resources :otscs
     resources :workouts
+    resources :grades
   end
   resources :events do
     resources :attendances

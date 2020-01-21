@@ -62,6 +62,12 @@
   <div class="column"><p><strong>Total PT Points: </strong><%= @cadet.pt_points %></p></div>
 </div>
 
+<div class="row">
+  <div class="column"><p><strong>Weekly PT Points (<%= @last_week_beginning %> to  <%= @last_week_end %>): </strong><%= @cadet.weekly_pt_points %></p></div>
+</div>
+
+<%= will_paginate @workouts%>
+
 <div class="container">
   <div class="col md"></div>
     
@@ -82,6 +88,8 @@
 
   <div class="col md"></div>
 </div>
+
+<%= will_paginate @workouts%>
 
 <br>
 

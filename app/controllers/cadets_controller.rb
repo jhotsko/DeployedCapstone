@@ -100,7 +100,6 @@ class CadetsController < ApplicationController
       @cadets << cadet
     end
     
-    @weekly_points = {}
     @last_week_beginning = Date.today.last_week.beginning_of_week
     @last_week_end = Date.today.last_week.end_of_week
     

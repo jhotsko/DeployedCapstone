@@ -18,7 +18,10 @@ class WorkoutsController < ApplicationController
   
   def index
     @cadet = Cadet.find(params[:cadet_id])
-    @workouts = @cadet.workouts.order(:workoutdate)
+    @workouts = @cadet.workouts.order(:workoutdate).page(params[:page]).per_page(15)
+    
+    @last_week_beginning = Date.today.last_week.beginning_of_week
+    @last_week_end = Date.today.last_week.end_of_week
     
     @workout_list = ['Pushups', 'Pullups', 'Sit-ups', 'Run', 'Swim', 'Weights']
   end
