@@ -11,7 +11,7 @@ class WarriorknowledgesController < ApplicationController
   # GET /warriorknowledges/1.json
   def show
     @cadet = Cadet.find_by(id: session[:cadet_id])
-    if @cadet.course == @warriorknowledge.tag
+    if @cadet.course == @warriorknowledge.tag || @warriorknowledge.tag == "All"
       @my_grade = @warriorknowledge.grades.find_by(cadet_id: session[:cadet_id]).score
     else
       @my_grade = "N/A"
