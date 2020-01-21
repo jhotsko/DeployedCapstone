@@ -67,6 +67,7 @@ class CadetsController < ApplicationController
         if params[:image].blank?
           params.delete(:image)
         end
+        CadetMailer.with(cadet: @cadet).admin_update_email.deliver_later
         redirect_to @cadet, success: "Cadet was successfully updated!"
       else
         redirect_to @cadet, warning: "Cadet was not updated!"
