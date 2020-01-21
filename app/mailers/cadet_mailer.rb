@@ -54,8 +54,8 @@ class CadetMailer < ApplicationMailer
     end
     
     def quiz_email
-        @cadet = params[:cadet]
         @warriorknowledge = params[:warriorknowledge]
+        @cadet = params[:cadet]
         mail(to: @cadet.email, :subject => 'New Warrioir Knowledge Quiz')
     end
     
