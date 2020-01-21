@@ -32,11 +32,13 @@
   <p id="notice"><%= notice %></p>
   <h2 class="display-4" style="margin-top: 30px;"><%= "#{@flight} Flight"%></h2>
   <p><strong>Total Cadets: </strong><%= @cadets.count %></p>
-  <p><strong>Flight Total Attendance Percentage: </strong><%= "#{@total_percent.round(2)}%" %></p>
-  <p><strong>Flight PT Attendance Percentage: </strong><%= "#{@pt_percent.round(2)}%" %></p>
-  <p><strong>Flight LLAB Attendance Percentage: </strong><%= "#{@llab_percent.round(2)}%" %></p>
-  <p><strong>Flight Total OTSCs: </strong><%= @num_otscs %></p>
-  <p><strong>Flight Total PT Points: </strong><%= @pt_points %></p>
+  <p><strong>Total Attendance Percentage: </strong><%= "#{@total_percent.round(2)}%" %></p>
+  <p><strong>PT Attendance Percentage: </strong><%= "#{@pt_percent.round(2)}%" %></p>
+  <p><strong>LLAB Attendance Percentage: </strong><%= "#{@llab_percent.round(2)}%" %></p>
+  <p><strong>Warrior Knowledge Quiz Average: </strong><%= "#{@quiz_average}%" %></p>
+  <p><strong>Total OTSCs: </strong><%= @num_otscs %></p>
+  <p><strong>Total PT Points: </strong><%= @pt_points %></p>
+  <p><strong>Weekly PT Points (<%= @last_week_beginning %> to  <%= @last_week_end %>):</strong> <%= @weekly_pt_points %> </p>
   <p><strong>PT Cadet of the Week (<%= @last_week_beginning %> to  <%= @last_week_end %>):</strong> C/<%= @pt_cadet.firstName %> <%= @pt_cadet.lastName %> (<%= @pt_cadet.weekly_pt_points %>) </p>
 </div>
 
@@ -51,6 +53,8 @@
         <th onclick="sortTable(3,0)",scope="col"> PT Attendance <div class="up-arrow", id = "3up">&#9650</div> <div class="down-arrow", id = "3down">&#9660</div> </th>
         <th onclick="sortTable(4,0)",scope="col"> LLAB Attendance <div class="up-arrow", id = "4up">&#9650</div> <div class="down-arrow", id = "4down">&#9660</div> </th>
         <th onclick="sortTable(5,0)",scope="col"> OTSCs <div class="up-arrow", id = "5up">&#9650</div> <div class="down-arrow", id = "5down">&#9660</div> </th>
+        <th onclick="sortTable(6,0)",scope="col"> Quiz Average <div class="up-arrow", id = "6up">&#9650</div> <div class="down-arrow", id = "6down">&#9660</div> </th>
+        <th onclick="sortTable(7,0)",scope="col"> PT Points <div class="up-arrow", id = "7up">&#9650</div> <div class="down-arrow", id = "7down">&#9660</div> </th>
         <% end %>
     </tr>
   </thead>
@@ -64,6 +68,8 @@
         <td><%= "#{cadet.pt_attendance.round(2)}%" %></td>
         <td><%= "#{cadet.llab_attendance.round(2)}%" %></td>
         <td><%= cadet.otscs.all.count %></td>
+        <td><%= cadet.grade_average %>%</td>
+        <td><%= cadet.pt_points %></td>
         <% end%>
       </tr>
     <% end %>
