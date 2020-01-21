@@ -4,21 +4,8 @@ class GradesController < ApplicationController
   # GET /grades
   # GET /grades.json
   def index
-    @grades = Grade.all
-  end
-
-  # GET /grades/1
-  # GET /grades/1.json
-  def show
-  end
-
-  # GET /grades/new
-  def new
-    @grade = Grade.new
-  end
-
-  # GET /grades/1/edit
-  def edit
+    @cadet = Cadet.find(params[:cadet_id])
+    @grades = @cadet.grades
   end
 
   # POST /grades

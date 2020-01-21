@@ -103,7 +103,7 @@ class Cadet < ApplicationRecord
     end
     
     def pt_points
-        @workouts = self.workouts
+        @workouts = self.workouts.all
         @points = 0
         
         @workouts.each do |workout|
@@ -114,7 +114,7 @@ class Cadet < ApplicationRecord
     end
     
     def weekly_pt_points
-        @workouts = self.workouts
+        @workouts = self.workouts.all
         @points = 0
     
         @last_week_beginning = Date.today.last_week.beginning_of_week
