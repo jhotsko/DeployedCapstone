@@ -20,7 +20,6 @@ class CadetsController < ApplicationController
   def show
      @cadets = Cadet.all.order(:lastName)
      @ord_attendance = @cadet.attendances
-    
   end
 
   # GET /cadets/new
@@ -101,37 +100,25 @@ class CadetsController < ApplicationController
       @cadets << cadet
     end
     
-    @total_attendance = 0
-    @pt_attendance = 0
-    @llab_attendance = 0
-    @llab_percent = 0
-    @pt_percent = 0
-    @total_percent = 0
-    
-    @num_otscs = 0
-    
-    @pt_points = 0
-    
     @weekly_points = {}
     @last_week_beginning = Date.today.last_week.beginning_of_week
     @last_week_end = Date.today.last_week.end_of_week
     
-    @cadets.each do |cadet|
-      @pt_attendance += cadet.pt_attendance
-      @llab_attendance += cadet.llab_attendance
-      @total_attendance += (cadet.pt_attendance + cadet.llab_attendance)
-      
-      @num_otscs += cadet.otscs.all.count
-      
-      @pt_points += cadet.pt_points
-      
-      @weekly_points[cadet.weekly_pt_points] = cadet
-    end
+    @pt_attendance = @cadets.sum {|cadet| cadet.pt_attendance}
+    @llab_attendance = @cadets.sum {|cadet| cadet.llab_attendance}
+    @total_attendance = @cadets.sum {|cadet| (cadet.pt_attendance + cadet.llab_attendance)}
+    @num_otscs = @cadets.sum {|cadet| cadet.otscs.all.count}
+    @pt_points = @cadets.sum {|cadet| cadet.pt_points}
+    @quiz_average = @cadets.sum {|cadet| cadet.grades.sum {|grade| grade.score}}
+    @num_quiz = @cadets.sum {|cadet| cadet.grades.count}
+    @weekly_pt_points = @cadets.sum {|cadet| cadet.weekly_pt_points}
+    @pt_cadet = @cadets.max {|cadet| cadet.weekly_pt_points}
+    
     @pt_percent = @pt_attendance.to_f / @cadets.count.to_f
     @llab_percent = @llab_attendance.to_f / @cadets.count.to_f
     @total_percent = @total_attendance.to_f / (@cadets.count.to_f * 2)
     
-    @pt_cadet = @weekly_points[@weekly_points.keys().max]
+    @quiz_average = (@quiz_average.to_f / @num_quiz.to_f).round(2)
   end
 
   private

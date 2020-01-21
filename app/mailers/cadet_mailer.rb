@@ -42,6 +42,7 @@ class CadetMailer < ApplicationMailer
     def otsc_email
         @cadet = params[:cadet]
         @otsc = params[:otsc]
+        @num_otscs = @cadet.otscs.all.count
         mail(to: @cadet.email, :subject => 'OTSC')
     end
     
@@ -50,5 +51,11 @@ class CadetMailer < ApplicationMailer
         @admin = params[:admin]
         @otsc = params[:otsc]
         mail(to: @admin.email, :subject => 'OTSC')
+    end
+    
+    def quiz_email
+        @cadet = params[:cadet]
+        @warriorknowledge = params[:warriorknowledge]
+        mail(to: @cadet.email, :subject => 'New Warrioir Knowledge Quiz')
     end
 end

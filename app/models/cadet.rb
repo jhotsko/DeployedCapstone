@@ -129,6 +129,17 @@ class Cadet < ApplicationRecord
         @points
     end
     
+    def grade_average
+        @grades = self.grades
+        @avg = 0
+        
+        @grades.each do |grade|
+            @avg += grade.score
+        end
+        @avg = (@avg.to_f / @grades.all.count.to_f).round(2)
+        @avg
+    end
+    
     def send_password_reset
       generate_token(:password_reset_token)
       self.password_reset_sent_at = Time.zone.now
