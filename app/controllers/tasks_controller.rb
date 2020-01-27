@@ -67,6 +67,32 @@ class TasksController < ApplicationController
   def alltasks
     @tasks = Task.all.order(date_created: :desc).page(params[:page]).per_page(15)
   end
+  
+  def completed
+    @tasks = []
+    Task.where(completed: 1).find_each do |task|
+      @tasks << task
+    end
+    @tasks.sort_by {|task| task.date_created}
+  end
+  
+  def uncompleted
+    @tasks = []
+    Task.where(completed: 0).find_each do |task|
+      @tasks << task
+    end
+    @tasks.sort_by! {|task| task.date_created}
+  end
+  
+  def late
+    @tasks = []
+    Task.where(completed: 0).find_each do |task|
+      if task.date_due < Date.today
+        @tasks << task
+      end
+    end
+    @tasks.sort_by! {|task| task.date_created}
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

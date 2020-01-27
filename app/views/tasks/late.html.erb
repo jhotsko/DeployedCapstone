@@ -12,7 +12,7 @@
 <p id="notice"><%= notice %></p>
 
 <div class="container" style="height: 100px; background-color: #dbe6c1; display: flex;">
-<h2 class="display-4" style="margin-top: 30px; vertical-align: middle; margin: auto;">All Tasks</h2>
+<h2 class="display-4" style="margin-top: 30px; vertical-align: middle; margin: auto;">Late Tasks</h2>
 </div>
 
 <% if (Cadet.find_by(id: session[:cadet_id]).position != "Cadet") %> 
@@ -27,16 +27,15 @@
 
       <div class="col-sm-12">
         <div  style="text-align: left;">
+          <a href="/alltasks" class="btn btn-secondary btn-primary btn-sm" role="button"> All Tasks</a>
+          <a href="/uncompletedtasks" class="btn btn-secondary btn-primary btn-sm" role="button"><i class="fas fa-times"></i> All Uncompleted Tasks</a>
           <a href="/completedtasks" class="btn btn-secondary btn-primary btn-sm" role="button"><i class="fas fa-check"></i> Completed Tasks</a>
-          <a href="/uncompletedtasks" class="btn btn-secondary btn-primary btn-sm" role="button"><i class="fas fa-times"></i> Uncompleted Tasks</a>
         </div>
       </div>
     </div>
 </div>
 
 <br>
-
-<%= will_paginate @tasks%>
 <br>
 
 <div class="container">
@@ -64,7 +63,6 @@
   <div class="col md"></div>
 </div>
 
-<%= will_paginate @tasks%>
 <br>
 
 </html>
