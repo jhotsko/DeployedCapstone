@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   get 'flights/:flight', to: 'cadets#flights'
   get 'calendar', to: 'events#calendar'
   get '/alltasks', to: 'tasks#alltasks'
+  get 'completedtasks', to: 'tasks#completed'
+  get 'uncompletedtasks', to: 'tasks#uncompleted'
+  get 'latetasks', to: 'tasks#late'
   
   resources :cadets do
     resources :attendances

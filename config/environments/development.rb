@@ -63,7 +63,7 @@ Rails.application.configure do
   config.hosts.clear
   
   config.action_mailer.delivery_method = :smtp
-  host = 'https://mysterious-wildwood-57680.herokuapp.com/' #replace with your own url
+  host = 'https://rotsee2.herokuapp.com/' #replace with your own url
   config.action_mailer.default_url_options = { host: host }
 
   # SMTP settings for gmail
