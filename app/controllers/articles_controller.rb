@@ -62,6 +62,15 @@ class ArticlesController < ApplicationController
     @article.destroy
     redirect_to articles_url, info: "Post successfully deleted."
   end
+  
+  def download_pdf
+    send_file "#{Rails.root}/app/assets/docs/Физика.pdf", type: "application/pdf", x_sendfile: true
+  end
+  
+  def download_pdf
+    @article = Article.find(params[:article_id])
+    redirect_to @article.file.url
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -71,6 +80,6 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:date, :title, :body, :tag)
+      params.require(:article).permit(:date, :title, :body, :tag, :file)
     end
 end

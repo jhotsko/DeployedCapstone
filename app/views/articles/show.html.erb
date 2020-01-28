@@ -14,7 +14,9 @@
     <h1 class="font-weight-light" style="text-align: left;"><%= @article.title %></h1> 
     <p style="text-align: left;"><%= @article.date %></p>
     <p style="text-align: left;"><%= @article.body %></p>
-
+    <% if @article.file.exists? %>
+      <p style="text-align: left;"><a href="/download_pdf/<%= @article.id %>" download><i class="fas fa-file-download"></i> Download "<%= @article.file_file_name %>"</a></p>
+    <%end%>
   </div>
 </div>
 
