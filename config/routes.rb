@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'completedtasks', to: 'tasks#completed'
   get 'uncompletedtasks', to: 'tasks#uncompleted'
   get 'latetasks', to: 'tasks#late'
+  get 'download_pdf/:article_id', to: "articles#download_pdf"
   
   resources :cadets do
     resources :attendances

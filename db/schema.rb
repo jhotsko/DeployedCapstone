@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_20_004320) do
+ActiveRecord::Schema.define(version: 2020_01_28_022857) do
 
   create_table "articles", force: :cascade do |t|
     t.date "date"
@@ -19,6 +19,10 @@ ActiveRecord::Schema.define(version: 2020_01_20_004320) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "tag"
+    t.string "file_file_name"
+    t.string "file_content_type"
+    t.integer "file_file_size"
+    t.datetime "file_updated_at"
   end
 
   create_table "attendances", force: :cascade do |t|
