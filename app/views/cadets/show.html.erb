@@ -154,7 +154,7 @@
     </tbody>
   </table>
   <% end %>
-  <% if (Cadet.find_by(id: session[:cadet_id]).position != "Cadet") %>  
+  <% if (@cadet == Cadet.find_by(id: session[:cadet_id]) || Cadet.find_by(id: session[:cadet_id]).position != "Cadet") %>  
     <div>
       <%= link_to '<i class="fas fa-user-edit"></i> Edit'.html_safe, edit_cadet_path(@cadet), :class => "btn btn-secondary btn-info btn-sm", :role => 'button', :tabindex => '0'%>
   

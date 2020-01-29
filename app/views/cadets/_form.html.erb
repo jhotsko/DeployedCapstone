@@ -26,7 +26,7 @@
     </div>
   <% end %>
   
-  <font color="red">All Fields Required *</font>
+  <font color="red">Fields Required *</font>
   
   <br></br>
 
@@ -38,64 +38,64 @@
       <div class="col-md-8">
 
       <div class="form-group row">
-        <label for="firstName" class="col-sm-3 col-form-label"><strong>First Name: </strong></label>
+        <label for="firstName" class="col-sm-3 col-form-label"><strong>First Name:* </strong></label>
         <div class="col-sm">
-          <%= form.text_field :firstName, required: true, hide_label: true %>
+          <%= form.text_field :firstName, required: true, maxlength: 50, size: 20, hide_label: true %>
         </div>
       </div>
       
       <div class="form-group row">
-        <label for="lastName" class="col-sm-3 col-form-label"><strong>Last Name: </strong></label>
+        <label for="lastName" class="col-sm-3 col-form-label"><strong>Last Name:* </strong></label>
         <div class="col-sm">
-          <%= form.text_field :lastName, required: true, hide_label: true %>
+          <%= form.text_field :lastName, required: true, maxlength: 50, size: 20, hide_label: true %>
         </div>
       </div>
 
 
       <div class="form-group row">
-        <label for="email" class="col-sm-3 col-form-label"><strong>Email Address: </strong><br></label>
+        <label for="email" class="col-sm-3 col-form-label"><strong>Email Address:* </strong><br></label>
         <div class="col-sm">
           <%= form.text_field :email, required: true, hide_label: true %>
         </div>
       </div>
     
       <div class="form-group row">
-        <label for="phoneNumber" class="col-sm-3 col-form-label"><strong>Phone Number: </strong><br></label>
+        <label for="phoneNumber" class="col-sm-3 col-form-label"><strong>Phone Number:* </strong><br></label>
         <div class="col-sm">
-          <%= form.phone_field :phoneNumber, required: true, hide_label: true %>
+          <%= form.phone_field :phoneNumber, required: true, hide_label: true, minlength: 10, maxlength: 10, size: 20, placeholder: "1234567890" %>
         </div>
       </div>
     
       <div class="form-group row">
-        <label for="school" class="col-sm-3 col-form-label"><strong>School: </strong><br></label>
+        <label for="school" class="col-sm-3 col-form-label"><strong>School:* </strong><br></label>
         <div class="col-sm">
           <%= form.select :school, options_for_select( @schoolList, @ord_cadet.school), :include_blank => true, required: true, hide_label: true %>
         </div>
       </div>
       
       <div class="form-group row">
-        <label for="gradYear" class="col-sm-3 col-form-label"><strong>Graduation Year: </strong><br></label>
+        <label for="gradYear" class="col-sm-3 col-form-label"><strong>Graduation Year:* </strong><br></label>
         <div class="col-sm">
           <%= form.number_field :gradYear, :value => Date.today.year, required: true, :include_blank => true, hide_label: true %>
         </div>
       </div>
     
       <div class="form-group row">
-        <label for="position" class="col-sm-3 col-form-label"><strong>Position: </strong><br></label>
+        <label for="position" class="col-sm-3 col-form-label"><strong>Position:* </strong><br></label>
         <div class="col-sm">
           <%= form.select :position, options_for_select(@positionList, @ord_cadet.position), required: true, :include_blank => true, hide_label: true%>
         </div>
       </div>
     
       <div class="form-group row">
-        <label for="course" class="col-sm-3 col-form-label"><strong>Course: </strong><br></label>
+        <label for="course" class="col-sm-3 col-form-label"><strong>Course:* </strong><br></label>
         <div class="col-sm">
           <%= form.select :course, options_for_select(@courseList, @ord_cadet.course), :include_blank => true, required: true, hide_label: true%>
         </div>
       </div>
 
       <div class="form-group row">
-        <label for="flight" class="col-sm-3 col-form-label"><strong>Flight: </strong><br></label>
+        <label for="flight" class="col-sm-3 col-form-label"><strong>Flight:* </strong><br></label>
         <div class="col-sm">
   
           <%= form.select :flight, options_for_select(@flightList, @ord_cadet.flight), :include_blank => true, required: true, hide_label: true%>
@@ -103,21 +103,21 @@
       </div>
     
       <div class="form-group row">
-        <label for="username" class="col-sm-3 col-form-label"><strong>Username: </strong><br></label>
+        <label for="username" class="col-sm-3 col-form-label"><strong>Username:* </strong><br></label>
         <div class="col-sm">
-          <%= form.text_field :username, required: true, hide_label: true %>
+          <%= form.text_field :username, required: true, maxlength: 15, size: 20, hide_label: true %>
         </div>
       </div>
     
       <div class="form-group row">
-        <label for="password" class="col-sm-3 col-form-label"><strong>Password: </strong><br></label>
+        <label for="password" class="col-sm-3 col-form-label"><strong>Password:* </strong><br></label>
         <div class="col-sm">
-          <%= form.password_field :password, required: true, hide_label: true %>
+          <%= form.password_field :password, required: true, minlength: 8, maxlength: 50, hide_label: true, placeholder: "Must be at least 8 characters" %>
         </div>
       </div>
       
       <div class="form-group row">
-        <label for="password_confirmation" class="col-sm-3 col-form-label"><strong>Confirm Password: </strong><br></label>
+        <label for="password_confirmation" class="col-sm-3 col-form-label"><strong>Confirm Password:* </strong><br></label>
         <div class="col-sm">
           <%= form.password_field :password_confirmation, required: true, hide_label: true%>
         </div>

@@ -22,35 +22,37 @@
     </div>
   <% end %>
   
+  <font color="red">Fields Required *</font> 
+  
   <div class="container">
 
 
   <% @ord_task  = @task %>
 
   <div class="row">
-    <label for="colFormLabel" class="col-sm-2 col-form-label"><strong>Date Created: </strong></label>
+    <label for="colFormLabel" class="col-sm-2 col-form-label"><strong>Date Created:* </strong></label>
     <div class="col-sm-10"><%= form.date_field :date_created, required: true, hide_label: true, value: @ord_task.date_created %></div>
   </div>
 
   <div class="row">
-    <label for="colFormLabel" class="col-sm-2 col-form-label"><strong>Due Date: </strong></label>
+    <label for="colFormLabel" class="col-sm-2 col-form-label"><strong>Due Date:* </strong></label>
     <div class="col-sm-10"><%= form.date_field :date_due, required: true, hide_label: true, value: @ord_task.date_due %></div>
   </div>
   
   <div class="row">
-    <label for="colFormLabel" class="col-sm-2 col-form-label"><strong>Description: </strong></label>
-    <div class="col-sm-10"><%= form.text_field :description, required: true, hide_label: true, placeholder: "Task Description..." %></div>
+    <label for="colFormLabel" class="col-sm-2 col-form-label"><strong>Description:* </strong></label>
+    <div class="col-sm-10"><%= form.text_area :description, required: true, maxlength: 2000, hide_label: true, placeholder: "Task Description..." %></div>
   </div>
     
   <div class="row">
-    <label for="colFormLabel" class="col-sm-2 col-form-label"><strong>Cadet: </strong></label>
+    <label for="colFormLabel" class="col-sm-2 col-form-label"><strong>Cadet:* </strong></label>
     <div class="col-sm-10">
       <%= form.select :cadet_id, options_for_select(@cadet_options, @ord_task.cadet_id), required: true, hide_label: true %>
     </div>
   </div>
   
   <div class="row">
-    <label for="colFormLabel" class="col-sm-2 col-form-label"><strong>Completed: </strong></label>
+    <label for="colFormLabel" class="col-sm-2 col-form-label"><strong>Status:* </strong></label>
     <div class="col-sm-10">
       <%= form.select :completed, options_for_select( @completed_options, @ord_task.completed), required: true, hide_label: true %>
     </div>

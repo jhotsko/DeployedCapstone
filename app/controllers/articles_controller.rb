@@ -35,12 +35,10 @@ class ArticlesController < ApplicationController
         ArticleMailer.with(article: @article, cadet: cadet).new_article_email.deliver_later
       end
       redirect_to @article, success: "New post has been successfully created."
-        
+      
     else
       redirect_to '/articles/new', danger: "Post not created."
-       
     end
-    
   end
 
   # PATCH/PUT /articles/1
@@ -52,7 +50,6 @@ class ArticlesController < ApplicationController
     
     else
       redirect_to edit_article_path(@article), danger: "Post was not updated."
-      
     end
   end
 

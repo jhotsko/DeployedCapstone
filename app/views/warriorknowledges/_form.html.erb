@@ -22,7 +22,7 @@
     </div>
   <% end %>
   
-  <font color="red">All Fields Required *</font>
+  <font color="red">Fields Required *</font>
   
   <div class="container">
 
@@ -30,40 +30,40 @@
   <% @ord_warriorknowledge  = @warriorknowledge %>
 
   <div class="row">
-    <label for="colFormLabel" class="col-sm-2 col-form-label"><strong>Name of Quiz: </strong></label>
-    <div class="col-sm-10"><%= form.text_field :name, required: true, hide_label: true, value: @ord_warriorknowledge.name %></div>
+    <label for="colFormLabel" class="col-sm-3 col-form-label"><strong>Name of Quiz:* </strong></label>
+    <div class="col-sm-9"><%= form.text_field :name, required: true, maxlength: 50, hide_label: true, value: @ord_warriorknowledge.name %></div>
   </div>
 
   <div class="row">
-    <label for="colFormLabel" class="col-sm-2 col-form-label"><strong>Date Assigned: </strong></label>
-    <div class="col-sm-10"><%= form.date_field :date_assigned, required: true, hide_label: true, value: @ord_warriorknowledge.date_assigned %></div>
+    <label for="colFormLabel" class="col-sm-3 col-form-label"><strong>Date Assigned:* </strong></label>
+    <div class="col-sm-9"><%= form.date_field :date_assigned, required: true, hide_label: true, value: @ord_warriorknowledge.date_assigned %></div>
   </div>
   
   <div class="row">
-    <label for="colFormLabel" class="col-sm-2 col-form-label"><strong>For:</strong></label>
-    <div class="col-sm-10">
+    <label for="colFormLabel" class="col-sm-3 col-form-label"><strong>For:* </strong></label>
+    <div class="col-sm-9">
       <%= form.select :tag, options_for_select(@tagList, @ord_warriorknowledge.tag), required: true, hide_label: true %>
     </div>
   </div>
   
   <div class="row">
-    <label for="colFormLabel" class="col-sm-2 col-form-label"><strong>Number of Questions: </strong></label>
-    <div class="col-sm-10"><%= form.number_field :num_questions, required: true, hide_label: true, value: @ord_warriorknowledge.num_questions %></div>
+    <label for="colFormLabel" class="col-sm-3 col-form-label"><strong>Number of Questions:* </strong></label>
+    <div class="col-sm-9"><%= form.number_field :num_questions, required: true, hide_label: true, value: @ord_warriorknowledge.num_questions %></div>
   </div>
   
-  <div class="form-group row" >
     <% @ord_grades = @ord_warriorknowledge.grades %>
     <p></p>
     <% i = 0 %>
     <label for="grades" class="col-sm-3 col-form-label"><strong></strong></label>
-      <div class="col-sm">
+      <div class="col-sm-9">
         <%= form.fields_for :grades, @warriorknowledge.grades do |f| %>
-          <%= f.label :num_correct,("#{@ord_grades[i].cadet.lastName}, #{@ord_grades[i].cadet.firstName}") %> 
-          <%= f.number_field :num_correct, required: true, hide_label: true, value: @ord_grades[i].num_correct  %>
-          <% i = i + 1 %>
+          <div class="form-group row" >
+            <div class="col-sm-3"></div>
+            <div class="col-sm-3"><%= f.label :num_correct,("#{@ord_grades[i].cadet.lastName}, #{@ord_grades[i].cadet.firstName}") %></div>
+            <div class="col-sm-6"><%= f.number_field :num_correct, required: true, hide_label: true, value: @ord_grades[i].num_correct  %></div>
+            <% i = i + 1 %>
+          </div>
         <% end %>
-      </div>
-    </div>
   
   <div class="actions" style="text-align:center;">
     <button onclick="alert('Submit')" type="submit" class="btn btn-success"><i class="fas fa-calendar-check"></i> Submit</button>
