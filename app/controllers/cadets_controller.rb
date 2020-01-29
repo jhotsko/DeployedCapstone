@@ -104,6 +104,23 @@ class CadetsController < ApplicationController
     @last_week_beginning = Date.today.last_week.beginning_of_week
     @last_week_end = Date.today.last_week.end_of_week
     
+    @pt_attendance = 0
+    @llab_attendance = 0
+    @total_attendance = 0
+    @num_otscs = 0
+    @pt_points = 0
+    @quiz_average = 0
+    @num_quiz = 0
+    @weekly_pt_points = 0
+    @pt_cadet = 0
+    
+    @pt_percent = 0
+    @llab_percent = 0
+    @total_percent = 0
+    
+    @quiz_average = 0
+    
+    
     @pt_attendance = @cadets.sum {|cadet| cadet.pt_attendance}
     @llab_attendance = @cadets.sum {|cadet| cadet.llab_attendance}
     @total_attendance = @cadets.sum {|cadet| (cadet.pt_attendance + cadet.llab_attendance)}
