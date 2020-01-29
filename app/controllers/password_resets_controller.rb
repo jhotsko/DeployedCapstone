@@ -5,9 +5,13 @@ class PasswordResetsController < ApplicationController
   end
 
   def create
-    cadet = Cadet.find_by_username(params[:username])
-    cadet.send_password_reset
-    redirect_to '/', success: "E-mail sent with password reset instructions."
+    @cadet = Cadet.find_by_username(params[:username])
+    if Cadet.exists? username: params[:username]
+      @cadet.send_password_reset
+      redirect_to '/', success: "E-mail sent with password reset instructions."
+    else
+      redirect_to '/', danger: "No cadet with that username was found."
+    end
   end
 
   def edit
