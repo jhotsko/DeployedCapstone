@@ -32,7 +32,9 @@ class ArticlesController < ApplicationController
     if @article.save
 
       @cadets.each do |cadet|
-        ArticleMailer.with(article: @article, cadet: cadet).new_article_email.deliver_later
+        if cadet.approved == true
+          ArticleMailer.with(article: @article, cadet: cadet).new_article_email.deliver_later
+        end
       end
       redirect_to @article, success: "New post has been successfully created."
       

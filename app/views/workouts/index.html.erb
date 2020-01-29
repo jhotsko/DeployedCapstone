@@ -78,7 +78,7 @@
         <div class="row" style="text-align:left;"><%= workout.workoutdate %></div>
         <div class="row" style="text-align:left;"><%= "Repititions: #{workout.repititions}" %></div>
         <div class="row" style="text-align:left;"><%= "Distance: #{workout.distance}" %></div>
-        <% if (Cadet.find_by(id: session[:cadet_id]).position != "Cadet") %>
+        <% if (@cadet == Cadet.find_by(id: session[:cadet_id]) || Cadet.find_by(id: session[:cadet_id]).position != "Cadet") %>
           <div class="row"><p style="text-align:left;"><%= link_to 'Delete Workout', [workout.cadet, workout], method: :delete, data: { confirm: 'Are you sure?' } %></p></div>
         <% end %>
         <hr>

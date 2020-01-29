@@ -44,8 +44,10 @@ class WarriorknowledgesController < ApplicationController
       end
       
       @cadets.each do |cadet|
-        Grade.create!(:num_correct => @warriorknowledge.num_questions, :cadet_id => cadet.id, :warriorknowledge_id => @warriorknowledge.id)
-        CadetMailer.with(warriorknowledge: @warriorknowledge, cadet: cadet).quiz_email.deliver_later
+        if cadet.approved == true
+          Grade.create!(:num_correct => @warriorknowledge.num_questions, :cadet_id => cadet.id, :warriorknowledge_id => @warriorknowledge.id)
+          CadetMailer.with(warriorknowledge: @warriorknowledge, cadet: cadet).quiz_email.deliver_later
+        end
       end
       redirect_to @warriorknowledge, success: "Warrior knowledge quiz successfully created."
     else
