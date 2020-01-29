@@ -59,20 +59,22 @@
     </tr>
   </thead>
   <tbody>
-    <% @cadets.each do |cadet| %>
-      <tr>
-        <td style="font-weight:bold"><%= link_to "#{cadet.lastName}, #{cadet.firstName} ", cadet %></td>
-        <td><%= cadet.position %></td>
-        <td><%= cadet.school %></td>
-        <% if (@cadet == Cadet.find_by(id: session[:cadet_id])) || (Cadet.find_by(id: session[:cadet_id]).position != "Cadet") %>
-        <td><%= "#{cadet.pt_attendance.round(2)}%" %></td>
-        <td><%= "#{cadet.llab_attendance.round(2)}%" %></td>
-        <td><%= cadet.otscs.all.count %></td>
-        <td><%= cadet.grade_average %>%</td>
-        <td><%= cadet.pt_points %></td>
-        <% end%>
-      </tr>
-    <% end %>
+    <%if cadets.any?%>
+      <% @cadets.each do |cadet| %>
+        <tr>
+          <td style="font-weight:bold"><%= link_to "#{cadet.lastName}, #{cadet.firstName} ", cadet %></td>
+          <td><%= cadet.position %></td>
+          <td><%= cadet.school %></td>
+          <% if (@cadet == Cadet.find_by(id: session[:cadet_id])) || (Cadet.find_by(id: session[:cadet_id]).position != "Cadet") %>
+          <td><%= "#{cadet.pt_attendance.round(2)}%" %></td>
+          <td><%= "#{cadet.llab_attendance.round(2)}%" %></td>
+          <td><%= cadet.otscs.all.count %></td>
+          <td><%= cadet.grade_average %>%</td>
+          <td><%= cadet.pt_points %></td>
+          <% end%>
+        </tr>
+      <% end %>
+    <%end%>
   </tbody>
 </table>
 
