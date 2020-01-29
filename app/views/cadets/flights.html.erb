@@ -39,7 +39,9 @@
   <p><strong>Total OTSCs: </strong><%= @num_otscs %></p>
   <p><strong>Total PT Points: </strong><%= @pt_points %></p>
   <p><strong>Weekly PT Points (<%= @last_week_beginning %> to  <%= @last_week_end %>):</strong> <%= @weekly_pt_points %> </p>
-  <p><strong>PT Cadet of the Week (<%= @last_week_beginning %> to  <%= @last_week_end %>):</strong> C/<%= @pt_cadet.firstName %> <%= @pt_cadet.lastName %> (<%= @pt_cadet.weekly_pt_points %>) </p>
+  <% if @pt_cadet != 0 %>
+    <p><strong>PT Cadet of the Week (<%= @last_week_beginning %> to  <%= @last_week_end %>):</strong> C/<%= @pt_cadet.firstName %> <%= @pt_cadet.lastName %> (<%= @pt_cadet.weekly_pt_points %>) </p>
+  <%end%>
 </div>
 
 <!--Cadet Table-->
@@ -59,7 +61,6 @@
     </tr>
   </thead>
   <tbody>
-    <%if cadets.any?%>
       <% @cadets.each do |cadet| %>
         <tr>
           <td style="font-weight:bold"><%= link_to "#{cadet.lastName}, #{cadet.firstName} ", cadet %></td>
@@ -74,7 +75,6 @@
           <% end%>
         </tr>
       <% end %>
-    <%end%>
   </tbody>
 </table>
 
