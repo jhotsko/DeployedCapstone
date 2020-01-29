@@ -25,25 +25,25 @@ class Cadet < ApplicationRecord
         
     validates :email,
         presence: true,
-        length: {maximum: 100},
+        length: {maximum: 50},
         allow_nil: false,
         format: { with: URI::MailTo::EMAIL_REGEXP } 
         
     validates :phoneNumber,
         presence: true,
-        length: {maximum: 50},
+        length: {maximum: 10, minimum: 10},
         allow_nil: false
         
     validates :username,
         presence: true,
-        length: {maximum: 100},
+        length: {maximum: 50},
         allow_nil: false,
         :uniqueness => { :case_sensitive => false }
     
     validates :password,
         :if => :password,
         presence: true,
-        length: {maximum: 100},
+        length: {maximum: 50, minimum: 8},
         allow_nil: false
     
     

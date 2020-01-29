@@ -19,29 +19,29 @@
   <div class="card border-0 shadow my-5">
     <div class="card-body p-5">
       <h4 class="font-weight-light" >Add a Workout</h4>
-      <font class="font-weight-light" style="text-align: left;" color="red">All Fields Required *</font>
+      <font class="font-weight-light" style="text-align: left;" color="red">Fields Required *</font>
       <br></br>
 
     <div class="container">
       
       <div class="row">
-        <label for="colFormLabel" class="col-sm-2 col-form-label"><strong>Date: </strong></label>
-        <div class="col-sm-10"><%= form.date_field :workoutdate, hide_label: true %></div>
+        <label for="colFormLabel" class="col-sm-2 col-form-label"><strong>Date:* </strong></label>
+        <div class="col-sm-10"><%= form.date_field :workoutdate, hide_label: true, required: true %></div>
       </div>
 
       <div class="row">
-        <label for="colFormLabel" class="col-sm-2 col-form-label"><strong>Workout Type: </strong></label>
-        <div class="col-sm-10"><%= form.select :workoutType, options_for_select(@workout_list), :include_blank => true, hide_label: true %></div>
+        <label for="colFormLabel" class="col-sm-2 col-form-label"><strong>Workout Type:* </strong></label>
+        <div class="col-sm-10"><%= form.select :workoutType, options_for_select(@workout_list), :include_blank => true, hide_label: true, required: true %></div>
       </div>
       
       <div class="row">
         <label for="colFormLabel" class="col-sm-2 col-form-label"><strong>Repititions: </strong></label>
-        <div class="col-sm-10"><%= form.number_field :repititions, :value => 0, hide_label: true %></div>
+        <div class="col-sm-10"><%= form.number_field :repititions, hide_label: true, required: true, placeholder: "Required for pushups, pullups, situps, and weights...otherwise put 0" %></div>
       </div>
       
       <div class="row">
         <label for="colFormLabel" class="col-sm-2 col-form-label"><strong>Distance (In Miles): </strong></label>
-        <div class="col-sm-10"><%= form.number_field :distance, :value => 0, :step => 0.01, hide_label: true %></div>
+        <div class="col-sm-10"><%= form.number_field :distance, :step => 0.01, hide_label: true, required: true, placeholder: "Required for swim and run...otherwise put 0" %></div>
       </div>
   
       <div class="actions" style="text-align:center;">
