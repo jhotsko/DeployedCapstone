@@ -22,15 +22,7 @@
   <%= link_to '<i class="fas fa-calendar-alt"></i> Calendar View'.html_safe, '/calendar', :class => "btn btn-primary btn-sm", :style => "align-text: flex-end"%>
 </div>
 
-<div class="container text-right" style="display: flex; justify-content: flex-end">
-  <%= form_tag events_path, method: :get do %>
-    <%= text_field_tag 'term', params[:term], placeholder: "YYYY-MM-DD" %>
-   
-    <button class="btn btn-secondary btn-sm" type="submit_tag" ><i class="fas fa-search"></i> Search</button>
-  <% end %>
-  <br>
-  <br>
-</div>
+<br>
 
 <%= will_paginate @events%>
 <br>
