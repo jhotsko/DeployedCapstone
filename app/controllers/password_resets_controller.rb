@@ -7,7 +7,7 @@ class PasswordResetsController < ApplicationController
   def create
     cadet = Cadet.find_by_username(params[:username])
     cadet.send_password_reset if cadet
-    redirect_to '/', success: "E-mail sent with password reset instructions."
+    redirect_to '/welcome', success: "E-mail sent with password reset instructions."
   end
 
   def edit
