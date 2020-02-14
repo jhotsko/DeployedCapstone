@@ -18,6 +18,10 @@ gem 'will_paginate', '~> 3.1.1'
 gem 'will_paginate-bootstrap'
 gem "simple_calendar", "~> 2.0"
 gem "paperclip", "~> 4.2"
+gem 'capistrano', '~> 3.11.2'
+gem 'capistrano-rails', '~> 1.4'
+gem 'capistrano-passenger', '~> 0.2.0'
+gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
 
 group :development, :test do
   gem 'sqlite3', '1.4.1'
